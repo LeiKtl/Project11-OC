@@ -9,8 +9,8 @@ function Home () {
             <Banner />
             <section className="features">
                 <h2 className='sr-only'>Features</h2>
-                {featuresList.map(({src, alt, title, content}) => (
-                    <Features src={src} alt={alt} title={title} content={content} />
+                {featuresList.map(({id, src, alt, title, content}) => (
+                    <Features key={id} src={src} alt={alt} title={title} content={content} />
                 ))}
             </section>
         </main>
