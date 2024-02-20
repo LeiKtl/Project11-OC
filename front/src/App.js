@@ -1,8 +1,11 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/header';
+// import HeaderLogin from './components/headerLogin';
 import Home from './pages/home';
-import Login from './pages/login';
+import SignIn from './pages/signIn';
+import Profile from './pages/profile';
+// import Transaction from './pages/transaction';
 import Footer from './components/footer';
 
 function App() {
@@ -11,7 +14,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} ></Route>
-        <Route path="/signIn" element={<Login />} ></Route>
+        <Route path="/signIn" element={<SignIn />} ></Route>
+          <Route path="/profile" element={<Profile />} ></Route>
       </Routes>
       <Footer />
     </Router>
