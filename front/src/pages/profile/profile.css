@@ -1,3 +1,13 @@
+.profile-welcome-text {
+  margin-bottom: 0;
+}
+
+.profile-name {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0.67em;
+}
+
 .edit-button {
     border-color: #00bc77;
     background-color: #00bc77;

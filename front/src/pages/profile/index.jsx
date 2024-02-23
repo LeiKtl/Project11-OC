@@ -1,19 +1,39 @@
 import './profile.css';
 import Accounts from '../../components/accounts';
-import { accountsInfo } from '../../datas/accountsInfo';
+import { useState, useEffect } from 'react';
+import FormUserEdit from '../../components/formUserEdit';
 
 function Profile () {
+    const [isClosed, setIsClosed] = useState(true);
+    const [accounts, setAccounts] = useState([])
+
+    function toggle () {
+        setIsClosed(!isClosed)
+    };
+
+    useEffect(() => {
+      fetch("/accountData/accountsInfo.json")
+      .then((response) => response.json())
+      .then((dataAccounts) => {
+          setAccounts(dataAccounts)
+      })
+  }, []);
+
     return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
         {/* changer nom selon user avec API */}
-        <button className="edit-button">Edit Name</button>
-        {/* créer un composant pour editer nom avec un form */}
+        {isClosed ? 
+        <>
+        <h1 className="profile-welcome-text">Welcome back</h1>
+        <h2 className="profile-name">Tony Jarvis!</h2>
+        {/* changer nom avec Username par API */}
+        <button className="edit-button" onClick={toggle}>Edit Name</button></> 
+        : <FormUserEdit />}
       </div>
       <h2 className="sr-only">Accounts</h2>
-      {accountsInfo.map(({id, title, amount, description}) => (
-        <Accounts key={`accounts${id}`} title={title} amount={amount} description={description}  />
+      {accounts.map(({id, title, amount, description}) => (
+        <Accounts id={id} key={`accounts${id}`} title={title} amount={amount} description={description}  />
       ))}
     </main>
     )
