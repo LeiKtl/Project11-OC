@@ -1,0 +1,36 @@
+.transaction-dropdown {
+    background-color: white;
+    color: #00bc77;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.transaction-table-header,
+.transaction-type,
+.transaction-category,
+.transaction-note {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 15px;
+}
+
+.transaction-table-header {
+    justify-content: space-between;
+}
+
+.transaction-date-description,
+.transaction-price {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.transaction-content {
+    font-size: 14px;
+}
+
+.chevron-open {
+    transform: rotate(-180deg);
+}
