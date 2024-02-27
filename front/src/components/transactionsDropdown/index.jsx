@@ -12,12 +12,10 @@ function TransactionsDropdown (props) {
 
     function toggleCategory() {
         setEditCategory(!editCategory)
-        console.log("category")
     }
 
     function toggleNote() {
         setEditNote(!editNote)
-        console.log("note")
     }
 
     // function changeCategory() {
@@ -44,7 +42,6 @@ function TransactionsDropdown (props) {
                 <div className='transaction-type-content'>
                     <h4 className='transaction-type'>Transaction type</h4>
                     <p>{props.type}</p>
-                    {/* mettre select */}
                 </div>
                 <div className='transaction-category-content'>
                     <h4 className='transaction-category'>Category</h4>
@@ -58,7 +55,6 @@ function TransactionsDropdown (props) {
                         : <p>{props.category}</p>}
                         <i className="fa-solid fa-pencil" onClick={toggleCategory}></i>
                     </div>
-                    {/* mettre select */}
                 </div>
                 <div className='transaction-note-content'>
                     <h4 className='transaction-note'>Note</h4>
@@ -68,7 +64,6 @@ function TransactionsDropdown (props) {
                         
                         <i className="fa-solid fa-pencil" onClick={toggleNote}></i>
                     </div>
-                    {/* mettre textarea */}
                 </div>
             </div>}
         </section>

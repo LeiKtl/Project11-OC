@@ -8,7 +8,6 @@ function FormUserEdit (props) {
 
     function handleCancel (e) {
         e.preventDefault();
-        console.log("ok");
         props.close()
     };
 
@@ -52,10 +51,7 @@ function FormUserEdit (props) {
             </div>
             <div className="formUserEdit-buttons">
                 <button className="save-button" type="submit">Save</button>
-                {/* faire un submit button? */}
                 <button className="cancel-button" onClick={handleCancel}>Cancel</button>
-                {/* onClick={handleCancel} */}
-                {/* faire en sorte que ca se ferme dynamiquement: useState pour cancel ? open(true) ---> toggle au click ? ou supprimer le contenue de username au click?*/}
             </div>
             </form>
         </div>
