@@ -20,12 +20,16 @@ function Header () {
                 <h1 className="sr-only">Argent Bank</h1>
             </ Link>
             {token ? 
-            <div>
-                <Link to='/signIn' className="main-nav-item" onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i> Logout</ Link>
+            <div className='header-user-profile'>
+                <div>
+                    <i className="fa fa-user-circle"></i>
+                    <span> Username</span>
+                </div>
+                <Link to='/' className="main-nav-item" onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i> Logout</ Link>    
             </div>
             : 
             <div>
-                <Link to='/signIn' className="main-nav-item"><i className="fa fa-user-circle"></i> Sign In</ Link>
+                <Link to='/login' className="main-nav-item"><i className="fa fa-user-circle"></i> Sign In</ Link>
             </div>}
         </nav>
     )
