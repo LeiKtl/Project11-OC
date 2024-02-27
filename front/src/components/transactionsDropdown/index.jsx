@@ -3,16 +3,34 @@ import './transactionsDropdown.css';
 
 function TransactionsDropdown (props) {
     const [isClosed, setIsClosed] = useState(true);
+    const [editCategory, setEditCategory] = useState(false);
+    const [editNote, setEditNote] = useState(false);
 
     function toggle () {
         setIsClosed(!isClosed)
     }
 
+    function toggleCategory() {
+        setEditCategory(!editCategory)
+        console.log("category")
+    }
+
+    function toggleNote() {
+        setEditNote(!editNote)
+        console.log("note")
+    }
+
+    // function changeCategory() {
+    //     fetch("", {
+    //         method: "PUT",
+    //     })
+    // }
+
     return (
         <section className='transaction-dropdown'>
             <div className='transaction-table-header'onClick={toggle}>
                 <div className='transaction-date-description'>
-                    <p>{props.date}</p>
+                    <p className='transaction-date'>{props.date}</p>
                     <p>{props.description}</p>
                 </div>
                 <div className='transaction-price'>
@@ -23,19 +41,33 @@ function TransactionsDropdown (props) {
             </div>
             {isClosed ? <></> 
             : <div className='transaction-content'>
-                <div className='transaction-type'>
-                    <h4>Transaction type</h4>
+                <div className='transaction-type-content'>
+                    <h4 className='transaction-type'>Transaction type</h4>
                     <p>{props.type}</p>
                     {/* mettre select */}
                 </div>
-                <div className='transaction-category'>
-                    <h4>Category</h4>
-                    <p>{props.category}</p>
+                <div className='transaction-category-content'>
+                    <h4 className='transaction-category'>Category</h4>
+                    <div className='transaction-category_highlight'>
+                        {editCategory ? 
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        : <p>{props.category}</p>}
+                        <i className="fa-solid fa-pencil" onClick={toggleCategory}></i>
+                    </div>
                     {/* mettre select */}
                 </div>
-                <div className='transaction-note'>
-                    <h4>Note</h4>
-                    <p>Lorem ipsum</p>
+                <div className='transaction-note-content'>
+                    <h4 className='transaction-note'>Note</h4>
+                    <div className='transaction-category_highlight'>
+                        {editNote ? <textarea></textarea>
+                        : <p>Lorem ipsum</p>}
+                        
+                        <i className="fa-solid fa-pencil" onClick={toggleNote}></i>
+                    </div>
                     {/* mettre textarea */}
                 </div>
             </div>}

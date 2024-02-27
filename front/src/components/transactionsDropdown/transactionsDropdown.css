@@ -7,28 +7,46 @@
 }
 
 .transaction-table-header,
+.transaction-type-content,
+.transaction-category-content,
+.transaction-note-content,
+.transaction-category_highlight,
+.transaction-date-description,
+.transaction-price  {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-table-header,
+.transaction-type-content,
+.transaction-category-content,
+.transaction-note-content {
+    padding: 0 15px;
+}
+
+.transaction-date,
 .transaction-type,
 .transaction-category,
 .transaction-note {
+    width: 150px;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 15px;
+}
+
+
+.transaction-category_highlight {
+    gap: 5px;
 }
 
 .transaction-table-header {
     justify-content: space-between;
 }
 
-.transaction-date-description,
-.transaction-price {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-}
-
 .transaction-content {
     font-size: 14px;
+}
+
+.transaction-price {
+    gap: 50px;
 }
 
 .chevron-open {
