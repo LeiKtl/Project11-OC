@@ -5,15 +5,12 @@ import { useState } from 'react';
 function Form () {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const navigate = useNavigate()
-
-  console.log(password)
-  console.log(email)
+  const navigate = useNavigate();
 
   const user = {
     email : email,
     password : password
-  }
+  };
 
   function handleSubmit (e) {
     e.preventDefault();
@@ -32,16 +29,15 @@ function Form () {
       if (userInfo.token) {
         localStorage.setItem("token", userInfo.token);
         navigate("/profile");
-      } else {
-        console.log("erreur")
       }
     })
-  }
+    .catch(() => window.alert("Email ou mot de passe invalide, veuillez réessayer."))
+  };
 
     return (
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username/Email</label>
+            <label htmlFor="username">Email</label>
             <input type="text" id="username" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div className="input-wrapper">
