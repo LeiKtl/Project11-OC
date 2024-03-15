@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import './form.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function Form () {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const user = {
     email : email,
@@ -16,22 +18,22 @@ function Form () {
     e.preventDefault();
 
     fetch("http://localhost:3001/api/v1/user/login", {
-            method: "POST",
-            headers: {
-                "Accept" : "application/json",
-                "Content-Type" : "application/json",
-            },
-            body: JSON.stringify(user)
-        })
+        method: "POST",
+        headers: {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json",
+        },
+        body: JSON.stringify(user)
+    })
     .then((response) => response.json())
     .then((data) => {
-      const userInfo = data.body
-      if (userInfo.token) {
-        localStorage.setItem("token", userInfo.token);
-        navigate("/profile");
-      }
+        const userInfo = data.body
+        if (userInfo.token) {
+          dispatch({type : "user/login", payload : userInfo});
+          navigate("/profile");
+        }
     })
-    .catch(() => window.alert("Email ou mot de passe invalide, veuillez réessayer."))
+    .catch(() => window.alert("Email ou mot de passe invalide, veuillez réessayer."))    
   };
 
     return (

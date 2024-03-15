@@ -2,15 +2,20 @@ import './profile.css';
 import Accounts from '../../components/accounts';
 import { useState, useEffect } from 'react';
 import FormUserEdit from '../../components/formUserEdit';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Profile () {
     const [isClosed, setIsClosed] = useState(true);
     const [accounts, setAccounts] = useState([]);
-    const [data, setData] = useState([]);
-    const [username, setUsername] = useState('');
+
+    const dispatch = useDispatch();
+    const userName = useSelector((state) => state.userName);
+    // const accounts = useSelector((state) => state.accounts)
+    // const userName = store.getState().userName;
+    
+    const token = useSelector((state) => state.token)
 
     function fetchUserProfile () {
-      const token = localStorage.getItem("token");
 
       fetch("http://localhost:3001/api/v1/user/profile", {
         method: "POST",
@@ -23,8 +28,7 @@ function Profile () {
       .then((response) => response.json())
       .then((data) => {
           const user = data.body
-          setUsername(user.userName)
-          setData(user)
+          dispatch({type: "user/setProfile", payload : user})
       })
     };
 
@@ -41,7 +45,11 @@ function Profile () {
       fetch("/accountData/accountsInfo.json")
         .then((response) => response.json())
         .then((dataAccounts) => {
-            setAccounts(dataAccounts)
+          // const accounts = dataAccounts
+          // dispatch({type: "user/accounts", payload: accounts})
+          // console.log(accounts)
+          // console.log(dataAccounts)
+          setAccounts(dataAccounts)
         })
     };
 
@@ -56,10 +64,10 @@ function Profile () {
         {isClosed ? 
         <>
         <h1 className="profile-welcome-text">Welcome back</h1>
-        <h2 className="profile-name">{username}!</h2>
+        <h2 className="profile-name">{ userName }!</h2>
         <button className="edit-button" onClick={toggle}>Edit Name</button>
         </> 
-        : <FormUserEdit data={data} onSuccess={handleSubmit} close={toggle}/>}
+        : <FormUserEdit onSuccess={handleSubmit} close={toggle}/>}
       </div>
       <h2 className="sr-only">Accounts</h2>
       {accounts.map(({id, title, amount, description}) => (

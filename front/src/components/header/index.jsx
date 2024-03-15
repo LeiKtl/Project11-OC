@@ -1,12 +1,17 @@
 import './header.css';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/img/argentBankLogo.png'
 
 function Header () {
-    const token = localStorage.getItem("token")
+    // const token = localStorage.getItem("token")
+    const token = useSelector((state => state.token))
+    const userName = useSelector((state => state.userName))
+    const dispatch = useDispatch()
     
     function handleLogout () {
-        localStorage.removeItem("token");
+        // localStorage.removeItem("token");
+        dispatch({type : "user/logout", payload : ''})
     }
 
     return (
@@ -23,7 +28,7 @@ function Header () {
             <div className='header-user-profile'>
                 <div>
                     <i className="fa fa-user-circle"></i>
-                    <span> Username</span>
+                    <span>{ userName }</span>
                 </div>
                 <Link to='/' className="main-nav-item" onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i> Logout</ Link>    
             </div>

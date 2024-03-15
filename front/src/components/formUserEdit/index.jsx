@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './formUserEdit.css'
+import { store } from '../../store';
+import { useSelector } from 'react-redux';
 
 function FormUserEdit (props) {
-    const [newUsername, setNewUsername] = useState(props.data.userName);
+    const [newUsername, setNewUsername] = useState(store.getState().userName);
 
-    const token = localStorage.getItem("token");
+    const token = useSelector((state) => state.token)
 
     function handleCancel (e) {
         e.preventDefault();
@@ -39,15 +41,15 @@ function FormUserEdit (props) {
             <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" defaultValue={props.data.userName} onChange={event => setNewUsername(event.target.value)} />
+                <input type="text" id="username" defaultValue={store.getState().userName} onChange={event => setNewUsername(event.target.value)} />
             </div>
             <div className="input-wrapper">
                 <label htmlFor="firstname">First Name</label>
-                <input type="firstname" id="firstname" value={props.data.firstName} disabled/>
+                <input type="firstname" id="firstname" value={store.getState().firstName} disabled/>
             </div>
             <div className="input-wrapper">
                 <label htmlFor="lastname">Last Name</label>
-                <input type="lastname" id="lastname" value={props.data.lastName} disabled/>
+                <input type="lastname" id="lastname" value={store.getState().lastName} disabled/>
             </div>
             <div className="formUserEdit-buttons">
                 <button className="save-button" type="submit">Save</button>
