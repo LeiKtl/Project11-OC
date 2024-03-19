@@ -8,6 +8,7 @@ import Transaction from './pages/transaction';
 import Footer from './components/footer';
 import { Provider } from 'react-redux';
 import { store } from './store/index.js'
+import RequireAuth from './middlewares/authGuard.jsx';
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} ></Route>
           <Route path="/login" element={<LogIn />} ></Route>
-          <Route path="/profile" element={<Profile />} ></Route>
-            <Route path="/profile/accounts/:id" element={<Transaction />} ></Route>
+          <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} ></Route>
+            <Route path="/profile/accounts/:id" element={<RequireAuth><Transaction /></RequireAuth>} ></Route>
         </Routes>
         <Footer />
       </Router>
