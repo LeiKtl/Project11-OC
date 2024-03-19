@@ -5,13 +5,20 @@ import { accountReducer } from "./reducers/accountReducer";
 import { transactionReducer } from "./reducers/transactionReducer";
 
 let state = {
-    token: null
+    token: null,
+    firstName: null,
+    lastName: null,
+    userName: null,
+    userEmail: null,
+    userId: null,
+    accounts: null,
+    transactions: null
 }
 
 const reducer = (currentState = state, action) => {
     switch (action.type) {
         case "user/login" : return loginReducer(currentState, action)
-        case "user/logout" : return logoutReducer(currentState, action)
+        case "user/logout" : return logoutReducer()
         case "user/setProfile" : return setProfileReducer(currentState, action) 
         case "user/accounts" : return accountReducer(currentState, action)
         case "user/transactions" : return transactionReducer(currentState, action)

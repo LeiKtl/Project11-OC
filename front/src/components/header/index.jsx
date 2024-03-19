@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/img/argentBankLogo.png'
 
 function Header () {
-    // const token = localStorage.getItem("token")
     const token = useSelector((state => state.token))
     const userName = useSelector((state => state.userName))
     const dispatch = useDispatch()
     
     function handleLogout () {
-        // localStorage.removeItem("token");
-        dispatch({type : "user/logout", payload : ''})
+        dispatch({type : "user/logout"})
     }
 
     return (

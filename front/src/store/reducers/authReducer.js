@@ -5,9 +5,15 @@ export function loginReducer (currentState, action) {
     }
 }
 
-export function logoutReducer (currentState, action) {
+export function logoutReducer () {
     return {
-        ...currentState,
-        token : action.payload.token
+        token: null,
+        firstName: null,
+        lastName: null,
+        userName: null,
+        userEmail: null,
+        userId: null,
+        accounts: null,
+        transactions: null
     }
 }
