@@ -15,7 +15,7 @@ function Accounts (props) {
                     <button className="transaction-button">View transactions</button>
                 </ Link>
             </div>}
-      </section>
+        </section>
     )
 }
 
