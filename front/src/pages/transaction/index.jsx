@@ -33,7 +33,7 @@ function Transaction () {
 
     return (
         <main className="main bg-dark">
-            <Accounts id={id} key={`accounts${id}`} title={account?.title} amount={account?.amount} description={account?.description} cross={true}/>
+            <Accounts id={id} key={`accounts${id}`} name={account?.name} amount={account?.amount} description={account?.description} cross={true}/>
             <div className="transactions-titles">
                 <div className="transactions-date-description">
                     <h3>Date</h3>

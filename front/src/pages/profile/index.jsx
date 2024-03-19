@@ -56,8 +56,8 @@ function Profile () {
             : <FormUserEdit onSuccess={handleSubmit} close={toggle}/>}
         </div>
         <h2 className="sr-only">Accounts</h2>
-        {accounts?.map(({id, title, amount, description}) => (
-            <Accounts id={id} key={`accounts${id}`} title={title} amount={amount} description={description}  />
+        {accounts?.map(({id, name, amount, description}) => (
+            <Accounts id={id} key={`accounts${id}`} name={name} amount={amount} description={description}  />
         ))}
     </main>
     )

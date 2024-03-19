@@ -32,8 +32,8 @@ function TransactionsDropdown (props) {
                     <p>{props.description}</p>
                 </div>
                 <div className='transaction-price'>
-                    <p>{props.amount}</p>
-                    <p>{props.balance}</p>
+                    <p>$<span>{props.amount.toFixed(2)}</span></p>
+                    <p>$<span>{props.balance.toFixed(2)}</span></p>
                     <i className={isClosed ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-up chevron-open"}></i>
                 </div>
             </div>
