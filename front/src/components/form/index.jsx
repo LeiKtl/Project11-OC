@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './form.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { userConnexion } from '../../services/fetch';
 
 function Form () {
     const [password, setPassword] = useState('');
@@ -16,16 +17,7 @@ function Form () {
 
     function handleSubmit (e) {
         e.preventDefault();
-
-        fetch("http://localhost:3001/api/v1/user/login", {
-            method: "POST",
-            headers: {
-                "Accept" : "application/json",
-                "Content-Type" : "application/json",
-            },
-            body: JSON.stringify(user)
-        })
-        .then((response) => response.json())
+        userConnexion(user)
         .then((data) => {
             const userInfo = data.body
             if (userInfo.token) {

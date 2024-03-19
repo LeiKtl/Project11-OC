@@ -3,6 +3,7 @@ import Accounts from '../../components/accounts';
 import { useState, useEffect, useCallback } from 'react';
 import FormUserEdit from '../../components/formUserEdit';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllUserInfo, getAllAccounts } from '../../services/fetch';
 
 function Profile () {
     const [isClosed, setIsClosed] = useState(true);
@@ -14,16 +15,8 @@ function Profile () {
     const token = useSelector((state) => state.token)
 
     const fetchUserProfile = useCallback(() => {
-        fetch("http://localhost:3001/api/v1/user/profile", {
-            method: "POST",
-            headers: {
-                "Accept" : "application/json",
-                "Content-Type" : "application/json",
-                "Authorization" : `Bearer${token}`
-            }
-        })
-        .then((response) => response.json())
-        .then((data) => {
+        getAllUserInfo(token)
+        .then ((data) => {
             const user = data.body
             dispatch({type: "user/setProfile", payload : user})
         })
@@ -39,8 +32,7 @@ function Profile () {
     };
 
     const fetchUserAccounts = useCallback(() => {
-        fetch("/accountData/accountsInfo.json")
-        .then((response) => response.json())
+        getAllAccounts()
         .then((dataAccounts) => {
             const accounts = dataAccounts
             dispatch({type: "user/accounts", payload: accounts})

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import './formUserEdit.css'
 import { store } from '../../store';
 import { useSelector } from 'react-redux';
+import { changeUsername } from '../../services/fetch';
 
 function FormUserEdit (props) {
     const [newUsername, setNewUsername] = useState(store.getState().userName);
-
     const token = useSelector((state) => state.token)
 
     function handleCancel (e) {
@@ -15,20 +15,10 @@ function FormUserEdit (props) {
 
     function handleSubmit (e) {
         e.preventDefault();
-        const data = {
+        const userName = {
             userName : newUsername
         }
-
-        fetch("http://localhost:3001/api/v1/user/profile", {
-            method : "PUT",
-            headers : {
-                "Accept" : "application/json",
-                "Authorization" : `Bearer ${token}`,
-                "Content-Type" : "application/json"
-            },
-            body : JSON.stringify(data)
-        })
-        .then((response) => response.json())
+        changeUsername(token, userName)
         .then(() => {
             props.onSuccess()
         })
