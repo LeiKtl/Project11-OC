@@ -4,34 +4,36 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import TransactionsDropdown from '../../components/transactionsDropdown'
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getAllTransactions } from '../../services/fetch';
 
 function Transaction () {
+    const dispatch = useDispatch();
     const { id } = useParams();
-    const [transactions, setTransactions] = useState([]);
-    const [account, setAccount] = useState([]);
+
+    const accounts = useSelector((state) => state.accounts);
+    const [account, setAccount] =useState(null)
+    const transactions = useSelector((state) => state.transactions)
+    console.log(transactions)
 
     useEffect(() => {
-        fetch("/accountData/transactionsInfo.json")
-        .then((response) => response.json())
-        .then((data) => {
-            setTransactions(data)
+        getAllTransactions()
+        .then ((transactions) => {
+            dispatch({type: "user/transactions" , payload: transactions})
         })
-    }, [id]);
+    }, [dispatch]);
 
     useEffect(() => {
-        fetch("/accountData/accountsInfo.json")
-        .then((response) => response.json())
-        .then((dataAccounts) => {
-            setAccount(dataAccounts.find((account) => {
-                return account.id === Number(id)
-                } ))
+        const accountMatchingId = accounts?.find((account) => {
+            return account.id === Number(id)
         })
-    }, [id]);
-    
+        setAccount(accountMatchingId)
+    }, [id, accounts]);
 
     return (
         <main className="main bg-dark">
-            <Accounts id={id} key={`accounts${id}`} title={account.title} amount={account.amount} description={account.description} cross={true}/>
+            <Accounts id={id} key={`accounts${id}`} title={account?.title} amount={account?.amount} description={account?.description} cross={true}/>
             <div className="transactions-titles">
                 <div className="transactions-date-description">
                     <h3>Date</h3>
@@ -42,9 +44,9 @@ function Transaction () {
                     <h3>Balance</h3>
                 </div>
             </div>
-            {transactions.map((transaction, index) => {
+            {transactions?.map(({id, date, description, amount, balance, type, category}) => {
                 return (
-                <TransactionsDropdown key={`transactions${index}`} date={transaction.date} description={transaction.description} amount={transaction.amount} balance={transaction.balance} type={transaction.type} category={transaction.category}/> 
+                <TransactionsDropdown key={`transactions${id}`} date={date} description={description} amount={amount} balance={balance} type={type} category={category}/> 
                 )
             })}
             
