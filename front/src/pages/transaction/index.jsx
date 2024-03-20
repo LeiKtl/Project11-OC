@@ -15,7 +15,6 @@ function Transaction () {
     const accounts = useSelector((state) => state.accounts);
     const [account, setAccount] =useState(null)
     const transactions = useSelector((state) => state.transactions)
-    console.log(transactions)
 
     useEffect(() => {
         getAllTransactions()
