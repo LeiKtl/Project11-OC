@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './form.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { userConnexion } from '../../services/fetch';
+import { userLogin } from '../../services/fetch';
 
 function Form () {
     const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ function Form () {
 
     function handleSubmit (e) {
         e.preventDefault();
-        userConnexion(user)
+        userLogin(user)
         .then((data) => {
             const userInfo = data.body
             if (userInfo.token) {

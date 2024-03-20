@@ -1,0 +1,13 @@
+{
+    "status": 200,
+    "message": "Successfully got user profile data",
+    "body": {
+        "email": "tony@stark.com",
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "userName": "Iron Man",
+        "createdAt": "2024-02-15T15:24:53.485Z",
+        "updatedAt": "2024-03-15T20:43:54.489Z",
+        "id": "65ce2cc527294e2954ac3b31"
+    }
+}

@@ -3,7 +3,7 @@ import Accounts from '../../components/accounts';
 import { useState, useEffect, useCallback } from 'react';
 import FormUserEdit from '../../components/formUserEdit';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUserInfo, getAllAccounts } from '../../services/fetch';
+import { getUserProfile, getAllAccounts } from '../../services/fetch';
 
 function Profile () {
     const [isClosed, setIsClosed] = useState(true);
@@ -15,7 +15,7 @@ function Profile () {
     const token = useSelector((state) => state.token)
 
     const fetchUserProfile = useCallback(() => {
-        getAllUserInfo(token)
+        getUserProfile(token)
         .then ((data) => {
             const user = data.body
             dispatch({type: "user/setProfile", payload : user})
